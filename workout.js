@@ -34,6 +34,7 @@ app.get("/", function(req, res, next){
 		}
 		for(p in rows){
 			getParams.push(p); 
+			console.log(p);
 		}
 		context.dataList = getParams;
 		res.render("sql", context)
