@@ -8,7 +8,7 @@ app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
 app.set("port", 8074);
 
-
+/*
 app.get("/", function(req, res, next){
 	var context = {};
 	mysql.pool.query("SELECT * FROM workout", function(err, rows, fields){
@@ -18,6 +18,24 @@ app.get("/", function(req, res, next){
 			return;
 		}
 		context.results = JSON.stringify(rows);
+		res.render("sql", context)
+	});
+});
+*/
+
+app.get("/", function(req, res, next){
+	var getParams = [];
+	var context = {};
+	mysql.pool.query("SELECT * FROM workout", function(err, rows, fields){
+		if(err){
+			console.log(err);
+			next(err);
+			return;
+		}
+		for(p in rows){
+			getParams.push(p); 
+		}
+		context.dataList = getParams;
 		res.render("sql", context)
 	});
 });
