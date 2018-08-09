@@ -9,7 +9,7 @@ app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
 app.set("port", 8074);
 
-app.use(express.static("/style.css"))
+app.use(express.static(path.join(__dirname + "/public")));
 
 /*
 app.get("/", function(req, res, next){
