@@ -32,7 +32,7 @@ app.get("/", function(req, res, next){
 			next(err);
 			return;
 		}
-		for(int i = 0; i < rows.length; i++){
+		for(var i = 0; i < rows.length; i++){
 			getParams.push(rows[i]);
 		}
 		context.dataList = getParams;
