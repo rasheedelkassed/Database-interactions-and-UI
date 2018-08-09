@@ -23,8 +23,8 @@ app.get("/", function(req, res, next){
 
 app.get("/reset-table",function(req,res,next){
 	var context = {};
-	mysql.pool.query("DROP TABLE IF EXISTS todo", function(err){
-		var createString = "CREATE TABLE todo(" +
+	mysql.pool.query("DROP TABLE IF EXISTS workout", function(err){
+		var createString = "CREATE TABLE workout(" +
 		"id INT PRIMARY KEY AUTO_INCREMENT," +
 		"name VARCHAR(255) NOT NULL," +
 		"done BOOLEAN," +
