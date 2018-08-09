@@ -28,8 +28,10 @@ app.get("/reset-table",function(req,res,next){
 		var createString = "CREATE TABLE workout(" +
 		"id INT PRIMARY KEY AUTO_INCREMENT," +
 		"name VARCHAR(255) NOT NULL," +
-		"done BOOLEAN," +
-		"due DATE)";
+		"reps INT," +
+		"weight INT," +
+		"date DATE," +
+		"unit VARCHAR(255))";
 		mysql.pool.query(createString, function(err){
 			context.results = "Table reset";
 			res.render("sql",context);
