@@ -9,12 +9,17 @@
 	</tr>
 	{{#each dataList}}
     <tr>
+		<input><>
 		<td>{{this.name}}</td>
 		<td>{{this.reps}}</td> 
 		<td>{{this.weight}}</td>
 		<td>{{this.date}}</td>
 		<td>{{this.unit}}</td>
-		<td><button id="deleteBut">Delete</button><button id="editBut">Edit</button></td>
+		<td><form>
+			<input id="{{this.id}}" type="hidden" value="{{this.id}}" onclick="bindDeleteButton({{this.id}})"/>
+			<input type="submit">Delete</input>
+			<input type="submit">Edit</input>
+		</form></td>
 	</tr>
     {{/each}}
 </table>
