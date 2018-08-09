@@ -13,6 +13,7 @@ app.get("/", function(req, res, next){
 	var context = {};
 	mysql.pool.query("SELECT * FROM workout", function(err, rows, fields){
 		if(err){
+			console.log(err);
 			next(err);
 			return;
 		}
