@@ -1,21 +1,21 @@
 <h1>MySQL Results:</h1>
 <p>{{{results}}}</p>
 
-<table>
+<table style="border: 1px solid black; border-collapse: collapse;">
 	<tr>
-		<th>Name</th>
-		<th>Reps</th> 
-		<th>Weight</th>
-		<th>Date</th>
-		<th>Unit</th>
+		<th style="border: 1px solid black;">Name</th>
+		<th style="border: 1px solid black;">Reps</th> 
+		<th style="border: 1px solid black;">Weight</th>
+		<th style="border: 1px solid black;">Date</th>
+		<th style="border: 1px solid black;">Unit</th>
 	</tr>
 	{{#each dataList}}
     <tr>
-		<td>{{this.name}}</td>
-		<td>{{this.reps}}</td> 
-		<td>{{this.weight}}</td>
-		<td>{{this.date}}</td>
-		<td>{{this.unit}}</td>
+		<td style="border: 1px solid black;">{{this.name}}</td>
+		<td style="border: 1px solid black;">{{this.reps}}</td> 
+		<td style="border: 1px solid black;">{{this.weight}}</td>
+		<td style="border: 1px solid black;">{{this.date}}</td>
+		<td style="border: 1px solid black;">{{this.unit}}</td>
 	</tr>
     {{/each}}
 </table>
