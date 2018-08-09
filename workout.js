@@ -8,18 +8,31 @@ app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
 app.set("port", 8074);
 
-app.get('/reset-table',function(req,res,next){
-  var context = {};
-  mysql.pool.query("DROP TABLE IF EXISTS todo", function(err){
-    var createString = "CREATE TABLE todo(" +
-    "id INT PRIMARY KEY AUTO_INCREMENT," +
-    "name VARCHAR(255) NOT NULL," +
-    "done BOOLEAN," +
-    "due DATE)";
-    mysql.pool.query(createString, function(err){
-      context.results = "Table reset";
-      res.render('sql',context);
-    })
+
+app.get("/", function(req, res, next){
+	var context = {};
+	mysql.pool.query("SELECT * FROM workout", function(err, rows, fields){
+		if(err){
+			next(err);
+			return;
+		}
+		context.results = JSON.stringify(rows);
+		res.render("sql", context)
+	});
+});
+
+app.get("/reset-table",function(req,res,next){
+	var context = {};
+	mysql.pool.query("DROP TABLE IF EXISTS todo", function(err){
+		var createString = "CREATE TABLE todo(" +
+		"id INT PRIMARY KEY AUTO_INCREMENT," +
+		"name VARCHAR(255) NOT NULL," +
+		"done BOOLEAN," +
+		"due DATE)";
+		mysql.pool.query(createString, function(err){
+			context.results = "Table reset";
+			res.render("sql",context);
+		})
   });
 });
 
