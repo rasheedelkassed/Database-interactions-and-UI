@@ -25,7 +25,7 @@ function addSubButtonListeners(){
 function actDeleteButton(event){
 	var req = new XMLHttpRequest();
 	var id = this.previousElementSibling.value;
-	var payload = {"id":id};
+	var payload = {"id":"" + id};
 	req.open("POST", "/delete-row", true);
 	req.setRequestHeader("Content-Type", "application/json");
 	req.addEventListener("load", function(){
