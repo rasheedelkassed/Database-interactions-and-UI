@@ -64,21 +64,13 @@ app.get("/reset-table",function(req, res, next){
 });
 
 app.post("/delete-row", function(req, res, next) {
-	mysql.pool.query("SELECT * FROM `workout` WHERE `id`=?", [req.query.id], function(err, result){
+	mysql.pool.query("DELETE * FROM `workout` WHERE `id`=?", [req.query.id], function(err, result){
 		if(err){
 			next(err);
 			return;
 		}
-		
-			mysql.pool.query("DELETE * FROM `workout` WHERE `id`=?", [req.query.id], function(err, result){
-				if(err){
-					next(err);
-					return;
-				}
-			});
-		
 	});
-	
+		
 });
 
 app.use(function (req, res) {
