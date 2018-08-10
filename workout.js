@@ -64,7 +64,7 @@ app.get("/reset-table",function(req, res, next){
 });
 
 app.get("/delete-row", function(req, res, next) {
-	mysql.pool.query("DELETE FROM `workout` WHERE `id`", [JSON.stringify(req.query.id)], function(err, result){
+	mysql.pool.query("DELETE FROM `workout` WHERE `id`=?", [req.query.id.toString()], function(err, result){
 		if(err){
 			next(err);
 			return;
