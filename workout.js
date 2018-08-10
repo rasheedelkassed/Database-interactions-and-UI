@@ -74,7 +74,7 @@ app.post("/delete-row", function(req, res, next) {
 			return;
 		}
 	});
-		
+	drawTable(req, res, next);
 });
 
 app.use(function (req, res) {
