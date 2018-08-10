@@ -69,14 +69,14 @@ app.post("/delete-row", function(req, res, next) {
 			next(err);
 			return;
 		}
-		if(result.length == 1){
+		
 			mysql.pool.query("DELETE * FROM `workout` WHERE `id`=?", [req.query.id], function(err, result){
 				if(err){
 					next(err);
 					return;
 				}
 			});
-		}
+		
 	});
 	
 });
