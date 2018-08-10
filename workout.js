@@ -46,7 +46,7 @@ app.get("/", function(req, res, next){
 	});
 });
 
-app.get("/reset-table",function(req,res,next){
+app.get("/reset-table",function(req, res, next){
 	var context = {};
 	mysql.pool.query("DROP TABLE IF EXISTS workout", function(err){
 		var createString = "CREATE TABLE workout(" +
@@ -63,7 +63,7 @@ app.get("/reset-table",function(req,res,next){
   });
 });
 
-app.post("/delete-row", function(req, res) {
+app.post("/delete-row", function(req, res, next) {
 	var context = {};
 	mysql.pool.query("SELECT * FROM todo WHERE id=?", [req.query.id], function(err, result){
 		if(err){
