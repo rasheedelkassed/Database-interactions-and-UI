@@ -29,7 +29,7 @@ app.get("/", function(req, res, next){
 });
 */
 
-function drawTable(req, res, next){
+app.get("/", function(req, res, next){
 	var getParams = [];
 	var context = {};
 	mysql.pool.query("SELECT * FROM workout", function(err, rows, fields){
@@ -44,10 +44,6 @@ function drawTable(req, res, next){
 		context.dataList = getParams;
 		res.render("sql", context)
 	});
-}
-
-app.get("/", function(req, res, next){
-	drawTable(req, res, next);
 });
 
 app.get("/reset-table",function(req, res, next){
@@ -74,6 +70,7 @@ app.post("/delete-row", function(req, res, next) {
 			return;
 		}
 	});
+		
 });
 
 app.use(function (req, res) {
