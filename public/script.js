@@ -36,7 +36,6 @@ function actDeleteButton(event){
 		}
 	});
 	req.send(JSON.stringify(payload));
-	event.preventDefault();
 	
 }
 
