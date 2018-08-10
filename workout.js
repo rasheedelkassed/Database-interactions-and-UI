@@ -63,6 +63,24 @@ app.get("/reset-table",function(req,res,next){
   });
 });
 
+app.post("/delete-row", function(req, res) {
+	var context = {};
+	mysql.pool.query("SELECT * FROM todo WHERE id=?", [req.query.id], function(err, result){
+		if(err){
+			next(err);
+			return;
+		}
+		if(result.length == 1){
+			mysql.pool.query("DELETE * FROM todo WHERE id=?", [req.query.id], function(err, result){
+				if(err){
+					next(err);
+					return;
+				}
+			});
+		}
+	});
+});
+
 app.use(function (req, res) {
     res.status(404);
     res.render('404');
