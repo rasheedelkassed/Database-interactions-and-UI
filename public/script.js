@@ -26,8 +26,7 @@ function actDeleteButton(event){
 	var req = new XMLHttpRequest();
 	var id = this.previousElementSibling.value;
 	var payload = {"id":id};
-	req.open("POST", "/delete-row");
-	req.setRequestHeader("Content-Type", "application/json");
+	req.open("GET", "/delete-row");
 	req.addEventListener("load", function(){
 		if(req.status >= 200 && req.status < 400){
 			var response = JSON.parse(req.responseText);
