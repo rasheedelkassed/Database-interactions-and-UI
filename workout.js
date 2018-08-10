@@ -1,8 +1,11 @@
 var express = require("express");
 var mysql = require("./dbcon.js");
+var bodyParser = require('body-parser');
 var path = require("path");
-
 var app = express();
+
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 var handlebars = require("express-handlebars").create({ defaultLayout: "main" });
 
 app.engine("handlebars", handlebars.engine);
@@ -21,7 +24,7 @@ app.get("/", function(req, res, next){
 			return;
 		}
 		context.results = JSON.stringify(rows);
-		res.render("sql", contex t)
+		res.render("sql", context)
 	});
 });
 */
