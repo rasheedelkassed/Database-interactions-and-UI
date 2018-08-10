@@ -16,7 +16,7 @@ function addSubButtonListeners(){
 	// Add click events to edit buttons
 	var editSubButtons = document.getElementsByClassName("edit");
 	for (var i = 0; i < editSubButtons.length; i++) {
-		editButtons[i].addEventListener("click", actEditButton);
+		editSubButtons[i].addEventListener("click", actEditButton);
   }
 }
 
@@ -29,7 +29,7 @@ function actDeleteButton(event){
 }
 
 // Edit the row of the table in MySQL and reload the table
-function actDeleteButton(event){
+function actEditButton(event){
 	var req = new XMLHttpRequest();
 	console.log("It works TWICE");
 	event.preventDefault();
