@@ -24,7 +24,7 @@ function addSubButtonListeners(){
 // Delete the row of the table in MySQL and reload the table
 function actDeleteButton(event){
 	var req = new XMLHttpRequest();
-	var id = this.previousSibling.value;
+	var id = this.previousElementSibling.value;
 	var payload = {"id":id};
 	req.open("POST", "/delete-row", true);
 	req.setRequestHeader("Content-Type", "application/json");
@@ -34,7 +34,7 @@ function actDeleteButton(event){
 		}else{
 			console.log("Error in network request: " + request.statusText);
 		}
-	})
+	});
 	req.send(JSON.stringify(payload));
 	event.preventDefault();
 	

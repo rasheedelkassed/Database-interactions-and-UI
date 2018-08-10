@@ -64,7 +64,6 @@ app.get("/reset-table",function(req, res, next){
 });
 
 app.post("/delete-row", function(req, res, next) {
-	var context = {};
 	mysql.pool.query("SELECT * FROM workout WHERE id=?", [req.query.id], function(err, result){
 		if(err){
 			next(err);
@@ -79,6 +78,7 @@ app.post("/delete-row", function(req, res, next) {
 			});
 		}
 	});
+	
 });
 
 app.use(function (req, res) {
