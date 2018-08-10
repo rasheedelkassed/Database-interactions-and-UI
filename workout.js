@@ -77,7 +77,6 @@ app.post("/delete-row", function(req, res, next) {
 				}
 			});
 		}
-		res.render('sql',context);
 	});
 	
 });
