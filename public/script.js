@@ -29,7 +29,9 @@ function actDeleteButton(event){
 	req.open("POST", "/delete-row", true);
 	req.setRequestHeader("Content-Type", "application/json");
 	req.addEventListener("load", function(){
-		if(!(req.status >= 200 && req.status < 400)){
+		if((req.status >= 200 && req.status < 400){
+			var response = JSON.parse(req.responseText);
+		}else{
 			console.log("Error in network request: " + req.statusText);
 		}
 	});
