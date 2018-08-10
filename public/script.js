@@ -35,7 +35,7 @@ function actDeleteButton(event){
 			console.log("Error in network request: " + request.statusText);
 		}
 	});
-	req.send(JSON.stringify(payload));
+	req.send(id);
 	event.preventDefault();
 	
 }
