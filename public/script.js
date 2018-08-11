@@ -15,7 +15,7 @@ function drawTable(rows){
 	for(var i = 0; i < header.length; i++){
 		var cellData = document.createElement("th");
 		cellData.textContent = header[i];
-		rowData.appendChild(headerData);
+		headerData.appendChild(cellData);
 	}
 	table.appendChild(headerData);
 		
