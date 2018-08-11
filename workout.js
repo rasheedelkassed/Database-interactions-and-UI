@@ -4,8 +4,6 @@ var bodyParser = require('body-parser');
 var path = require("path");
 var app = express();
 
-app.use(express.bodyParser());
-app.use(app.router);
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 var handlebars = require("express-handlebars").create({ defaultLayout: "main" });
