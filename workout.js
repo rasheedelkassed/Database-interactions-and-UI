@@ -81,13 +81,14 @@ app.post("/input-row", function(req, res, next) {
 });
 
 app.post("/get-data", function(req, res, next) {
-	mysql.pool.query("SELECT * FROM workout` WHERE `id`= ?", [req.body.id], function(err, result){
+	mysql.pool.query("SELECT * FROM workout` WHERE `id`= ?", [req.body.id], function(err, rows, fields){
 		if(err){
 			next(err);
 			return;
 		}
 	});
-	returnTable(req, res, next);
+	res.type("application/json")
+	res.send(rows);
 });
 
 
