@@ -6,6 +6,20 @@ if(document.readyState === "loading"){
 	
 }
 
+// Draw the table
+function drawTable(rows){
+	var header = ["Name", "Reps", "Weight", "Date", "Unit"];
+	var table = createNewElement("table");
+	for(var i = 0; i < rows.length; i++){
+		var rowData = createNewElement("tr")
+		for(r in rows[i]){
+			var cellData = 0;
+			cellData = createNewElement("td");
+			cellData.textContent = r;
+		}
+	}
+}
+
 // Call the functions to add event listeners to all buttons on the page
 function addSubButtonListeners(){
 	// Add click events to delete buttons
@@ -30,7 +44,7 @@ function actDeleteButton(event){
 	req.setRequestHeader("Content-Type", "application/json");
 	req.addEventListener("load", function(){
 		if(req.status >= 200 && req.status < 400){
-			var response = JSON.parse(req.responseText);
+			drawTable(JSON.parse(req.responseText));
 			console.log(response);
 		}else{
 			console.log("Error in network request: " + request.statusText);
@@ -48,3 +62,4 @@ function actEditButton(event){
 	event.preventDefault();
 	
 }
+

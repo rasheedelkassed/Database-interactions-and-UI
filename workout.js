@@ -14,32 +14,17 @@ app.set("port", 8074);
 
 app.use(express.static(path.join(__dirname + "/public")));
 
-/*
-app.get("/", function(req, res, next){
-	var context = {};
+function returnTable(req, res, next){
 	mysql.pool.query("SELECT * FROM workout", function(err, rows, fields){
 		if(err){
 			console.log(err);
 			next(err);
 			return;
 		}
-		context.results = JSON.stringify(rows);
-		res.render("sql", context)
+		res.type("application/json")
+		res.send(rows);
 	});
-});
-*/
-/*
-function drawTable(rows){
-	var header = ["Name", "Reps", "Weight", "Date", "Unit"];
-	var table = createNewElement("table");
-	for(var i = 0; i < rows.length; i++){
-		var rowData = createNewElement("tr")
-		for(j = 0; j < header.length; j++){
-			
-		}
-	}
 }
-*/
 
 app.get("/", function(req, res, next){
 	var getParams = [];
