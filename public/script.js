@@ -15,6 +15,7 @@ function deleteTable(){
 
 // Draw the table
 function drawTable(rows){
+	removeEditForm();
 	deleteTable();
 	var header = ["Name", "Reps", "Weight", "Date", "Unit"];
 	var table = document.createElement("table");
@@ -156,6 +157,9 @@ function actEditButton(event){
 }
 
 function addEditForm(rowValue){
+	if(document.getElementById("editSendForm")){
+		removeEditForm();
+	}
 	var formToAdd = document.createElement("form");
 	formToAdd.id = "editSendForm";
 	var legend = document.createElement("legend");
@@ -215,7 +219,33 @@ function removeEditForm(){
 }
 
 function actSendEditButton(event){
+	var req = new XMLHttpRequest();
+	var payload = {name: null, reps: null, weight: null, date: null, unit: null};
+	payload.name = document.getElementById("newName").value || null;
+	payload.reps = document.getElementById("newReps").value || null;
+	payload.weight = document.getElementById("newWeight").value || null;
+	payload.date = document.getElementById("newDate").value || null;
+	payload.unit = document.getElementById("newUnit").value || null;
 	
+	
+	if(payload.name == null || payload.name == ""){
+		alert("Editing requires a name");
+		event.preventDefault();
+		return;
+	}
+	
+	req.open("POST", "/edit-row");
+	req.setRequestHeader("Content-Type", "application/json");
+	req.addEventListener("load", function(){
+		if(req.status >= 200 && req.status < 400){
+			var response = JSON.parse(req.responseText)
+			drawTable(response);
+		}else{
+			console.log("Error in network request: " + req.statusText);
+		}
+	});
+	req.send(JSON.stringify(payload));
+	event.preventDefault();
 }
 
 function actInputButton(event){

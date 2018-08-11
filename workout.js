@@ -80,6 +80,16 @@ app.post("/input-row", function(req, res, next) {
 	returnTable(req, res, next);
 });
 
+app.post("/edit-row", function(req, res, next) {
+	mysql.pool.query("UPDATE `workout` SET `name`=?, `reps`=?, `weight`=?, `date`=?, `unit`=? WHERE `id` = ?", [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.unit, req.body.name], function(err, result){
+		if(err){
+			next(err);
+			return;
+		}
+	});
+	returnTable(req, res, next);
+});
+
 app.post("/get-data", function(req, res, next) {
 	mysql.pool.query("SELECT * FROM `workout` WHERE `id`= ?", [req.body.id], function(err, rows, fields){
 		if(err){
