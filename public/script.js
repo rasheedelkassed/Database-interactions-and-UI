@@ -1,9 +1,9 @@
 
 // Call functions that need to act on page load
 if(document.readyState === "loading"){
-	document.addEventListener("DOMContentLoaded", loadTable);
+	document.addEventListener("DOMContentLoaded", loadPage);
 }else{
-	loadTable();
+	loadPage();
 }
 
 function deleteTable(){
@@ -29,8 +29,8 @@ function drawTable(rows){
 	table.appendChild(headerData);
 		
 	// create the other rows
-	// this loop is inefficient
 	for(var i = 0; i < rows.length; i++){
+		// Make the delete and edit  form buttons
 		var formToAdd = document.createElement("FORM");
 		var deleteButton = document.createElement("input");
 		deleteButton.type = "submit";
@@ -44,6 +44,7 @@ function drawTable(rows){
 		hiddenInput.type = "hidden";
 		hiddenInput.value = "";
 		
+		// Get the row data
 		var rowData = document.createElement("tr")
 		for(r in rows[i]){
 			if(r + "" != "id"){
@@ -51,9 +52,11 @@ function drawTable(rows){
 				cellData.textContent = rows[i][r + ""];
 				rowData.appendChild(cellData);
 			}else{
+				// get id
 				hiddenInput.value = rows[i][r + ""];
 			}
 		}
+		// add the row with the form
 		formToAdd.appendChild(hiddenInput);
 		formToAdd.appendChild(deleteButton);
 		formToAdd.appendChild(editButton);
@@ -63,11 +66,13 @@ function drawTable(rows){
 		table.appendChild(rowData);
 	}
 	document.body.appendChild(table);
+	
+	// Add the onclick listeners to the submit buttons
 	addSubButtonListeners();
 }
 
 // Load table on first page load
-function loadTable(){
+function loadPage(){
 	var req = new XMLHttpRequest();
 	req.open("GET", "/start-up");
 	req.setRequestHeader("Content-Type", "application/json");
@@ -121,6 +126,41 @@ function actDeleteButton(event){
 function actEditButton(event){
 	var req = new XMLHttpRequest();
 	console.log("It works TWICE");
+	event.preventDefault();
+	
+}
+
+function actInputButton(event){
+	var req = new XMLHttpRequest();
+	var payload = {name: null, reps: null, weight: null, date: null, unit: null};
+	payload.name = document.getElementById("exeName").value || null;
+	payload.reps = document.getElementById("exeReps").value || null;
+	payload.weight = document.getElementById("exeWeight").value || null;
+	payload.date = document.getElementById("exeDate").value || null;
+	payload.unit = document.getElementById("exeUnit").value || null;
+	
+	document.getElementById("exeName").value = null;
+	document.getElementById("exeReps").value = null;
+	document.getElementById("exeWeight").value = null;
+	document.getElementById("exeDate").value = null;
+	document.getElementById("exeUnit").value = null;
+	
+	if(payload.name == null){
+		alert("Inputting requires a name");
+		event.preventDefault();
+		return;
+	}
+	
+	req.open("POST", "/input-row");
+	req.addEventListener("load", function(){
+		if(req.status >= 200 && req.status < 400){
+			var response = JSON.parse(req.responseText)
+			drawTable(response);
+		}else{
+			console.log("Error in network request: " + request.statusText);
+		}
+	});
+	req.send(JSON.stringify(payload));
 	event.preventDefault();
 	
 }

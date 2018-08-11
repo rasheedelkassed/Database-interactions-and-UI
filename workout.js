@@ -70,6 +70,16 @@ app.post("/delete-row", function(req, res, next) {
 	returnTable(req, res, next);
 });
 
+app.post("/input-row", function(req, res, next) {
+	mysql.pool.query("INSERT INTO `workout` (`name`, `date`, `reps`, `weight`, `unit`) VALUES (?,?,?,?,?)", [req.body.name, req.body.date, req.body.reps, req.body.weight, req.body.unit], function(err, result){
+		if(err){
+			next(err);
+			return;
+		}
+	});
+	returnTable(req, res, next);
+});
+
 app.use(function (req, res) {
     res.status(404);
     res.render('404');
