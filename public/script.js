@@ -99,7 +99,13 @@ function addSubButtonListeners(){
 	var editSubButtons = document.getElementsByClassName("edit");
 	for (var i = 0; i < editSubButtons.length; i++) {
 		editSubButtons[i].addEventListener("click", actEditButton);
-  }
+	}
+	
+	// Add click events to input buttons
+	var inputSubButtons = document.getElementsByClassName("input");
+	for (var i = 0; i < inputSubButtons.length; i++) {
+		inputSubButtons[i].addEventListener("click", actInputButton);
+	}
 }
 
 // Delete the row of the table in MySQL and reload the table
