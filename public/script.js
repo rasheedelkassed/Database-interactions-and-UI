@@ -24,7 +24,7 @@ function drawTable(rows){
 		var rowData = document.createElement("tr")
 		for(r in rows[i+1]){
 			var cellData = document.createElement("td");
-			cellData.textContent = r.value;
+			cellData.textContent = rows[i+1].r.value;
 			console.log(r);
 			rowData.appendChild(cellData);
 		}
