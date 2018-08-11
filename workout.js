@@ -61,7 +61,6 @@ app.get("/reset-table",function(req, res, next){
 });
 
 app.post("/delete-row", function(req, res, next) {
-	console.log(req.body.id);
 	console.log(req.body.name);
 	mysql.pool.query("DELETE FROM `workout` WHERE `id`= ?", [req.body.id], function(err, result){
 		if(err){
@@ -73,7 +72,6 @@ app.post("/delete-row", function(req, res, next) {
 });
 
 app.post("/input-row", function(req, res, next) {
-	console.log(req.body.name);
 	mysql.pool.query("INSERT INTO `workout` (`name`, `reps`, `weight`, `date`, `unit`) VALUES (?,?,?,?,?)", [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.unit], function(err, result){
 		if(err){
 			next(err);
