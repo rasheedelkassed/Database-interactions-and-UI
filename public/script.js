@@ -2,10 +2,8 @@
 // Call functions that need to act on page load
 if(document.readyState === "loading"){
 	document.addEventListener("DOMContentLoaded", loadTable);
-	document.addEventListener("DOMContentLoaded", addSubButtonListeners);
 }else{
 	loadTable();
-	addSubButtonListeners();
 }
 
 function deleteTable(){
@@ -65,6 +63,7 @@ function drawTable(rows){
 		table.appendChild(rowData);
 	}
 	document.body.appendChild(table);
+	addSubButtonListeners();
 }
 
 // Load table on first page load
