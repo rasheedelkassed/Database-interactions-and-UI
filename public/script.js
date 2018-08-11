@@ -9,12 +9,12 @@ if(document.readyState === "loading"){
 // Draw the table
 function drawTable(rows){
 	var header = ["Name", "Reps", "Weight", "Date", "Unit"];
-	var table = createNewElement("table");
+	var table = createElement("table");
 	for(var i = 0; i < rows.length; i++){
-		var rowData = createNewElement("tr")
+		var rowData = createElement("tr")
 		for(r in rows[i]){
 			var cellData = 0;
-			cellData = createNewElement("td");
+			cellData = createElement("td");
 			cellData.textContent = r;
 		}
 	}
