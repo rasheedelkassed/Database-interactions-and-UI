@@ -28,6 +28,18 @@ app.get("/", function(req, res, next){
 	});
 });
 */
+/*
+function drawTable(rows){
+	var header = ["Name", "Reps", "Weight", "Date", "Unit"];
+	var table = createNewElement("table");
+	for(var i = 0; i < rows.length; i++){
+		var rowData = createNewElement("tr")
+		for(j = 0; j < header.length; j++){
+			
+		}
+	}
+}
+*/
 
 app.get("/", function(req, res, next){
 	var getParams = [];
