@@ -141,7 +141,7 @@ function actEditButton(event){
 	var req = new XMLHttpRequest();
 	var id = this.previousElementSibling.value;
 	var payload = {"id":"" + id};
-	req.open("POST", "/delete-row", true);
+	req.open("POST", "/get-data", true);
 	req.setRequestHeader("Content-Type", "application/json");
 	req.addEventListener("load", function(){
 		if(req.status >= 200 && req.status < 400){
