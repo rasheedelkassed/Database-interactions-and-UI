@@ -80,6 +80,17 @@ app.post("/input-row", function(req, res, next) {
 	returnTable(req, res, next);
 });
 
+app.post("/get-data", function(req, res, next) {
+	mysql.pool.query("SELECT * FROM workout` WHERE `id`= ?", [req.body.id], function(err, result){
+		if(err){
+			next(err);
+			return;
+		}
+	});
+	returnTable(req, res, next);
+});
+
+
 app.use(function (req, res) {
     res.status(404);
     res.render('404');

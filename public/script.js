@@ -31,7 +31,7 @@ function drawTable(rows){
 	// create the other rows
 	for(var i = 0; i < rows.length; i++){
 		// Make the delete and edit  form buttons
-		var formToAdd = document.createElement("FORM");
+		var formToAdd = document.createElement("form");
 		var deleteButton = document.createElement("input");
 		deleteButton.type = "submit";
 		deleteButton.className = "delete";
@@ -108,6 +108,14 @@ function addSubButtonListeners(){
 	}
 }
 
+function addSendEditSubButtonListener(){
+	// Add click events to sendEdit buttons
+	var sendEditSubButtons = document.getElementsByClassName("sendEdit");
+	for (var i = 0; i < sendEditSubButtons.length; i++) {
+		sendEditSubButtons[i].addEventListener("click", actSendEditButton);
+	}
+}
+
 // Delete the row of the table in MySQL and reload the table
 function actDeleteButton(event){
 	var req = new XMLHttpRequest();
@@ -131,8 +139,77 @@ function actDeleteButton(event){
 // Edit the row of the table in MySQL and reload the table
 function actEditButton(event){
 	var req = new XMLHttpRequest();
-	console.log("It works TWICE");
+	var id = this.previousElementSibling.value;
+	var payload = {"id":"" + id};
+	req.open("POST", "/delete-row", true);
+	req.setRequestHeader("Content-Type", "application/json");
+	req.addEventListener("load", function(){
+		if(req.status >= 200 && req.status < 400){
+			var response = JSON.parse(req.responseText)
+			addEditForm(response);
+		}else{
+			console.log("Error in network request: " + req.statusText);
+		}
+	});
+	
 	event.preventDefault();
+}
+
+function addEditForm(rowValue){
+	var formToAdd = document.createElement("form");
+	formToAdd.id = "editSendForm";
+	var legend = document.createElement("legend");
+	legend.innerHTML = "Edit A Row";
+	
+	var nameInput = document.createElement("input");
+	nameInput.id = "newName";
+	nameInput.type = "text";
+	nameInput.value = rowValue.name.value;
+	
+	var repsInput = document.createElement("input");
+	repsInput.id = "newReps";
+	repsInput.type = "number";
+	repsInput.value = rowValue.reps.value;
+	
+	var weightInput = document.createElement("input");
+	weightInput.id = "newWeight";
+	weightInput.type = "number";
+	weightInput.value = rowValue.weight.value;
+	
+	var dateInput = document.createElement("input");
+	dateInput.id = "newDate";
+	dateInput.type = "text";
+	dateInput.value = rowValue.date.value;
+	
+	var unitInput = document.createElement("input");
+	unitInput.id = "newUnit";
+	unitInput.type = "text";
+	unitInput.value = rowValue.unit.value;
+	
+	var submitButton = document.createElement("input");
+	submitButton.className = "sendEdit";
+	submitButton.type = "submit";
+	
+	formToAdd.appendChild(legend);
+	formToAdd.appendChild(nameInput);
+	formToAdd.appendChild(repsInput);
+	formToAdd.appendChild(weightInput);
+	formToAdd.appendChild(dateInput);
+	formToAdd.appendChild(unitInput);
+	formToAdd.appendChild(submitButton);
+	
+	document.body.appendChild(formToAdd);
+	addSendEditSubButtonListener();
+}
+
+function removeEditForm(){
+	var formToDel = document.getElementById("editSendForm");
+	if(formToDel){
+		formToDel.parentNode.removeChild(formToDel);
+	}
+}
+
+function actSendEditButton(event){
 	
 }
 
