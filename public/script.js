@@ -123,6 +123,7 @@ function actDeleteButton(event){
 			console.log("Error in network request: " + req.statusText);
 		}
 	});
+	console.log(JSON.stringify(payload));
 	req.send(JSON.stringify(payload));
 	event.preventDefault();
 	
