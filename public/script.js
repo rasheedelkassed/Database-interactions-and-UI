@@ -81,7 +81,7 @@ function loadPage(){
 			var response = JSON.parse(req.responseText)
 			drawTable(response);
 		}else{
-			console.log("Error in network request: " + request.statusText);
+			console.log("Error in network request: " + req.statusText);
 		}
 	});
 	req.send();
@@ -120,7 +120,7 @@ function actDeleteButton(event){
 			var response = JSON.parse(req.responseText)
 			drawTable(response);
 		}else{
-			console.log("Error in network request: " + request.statusText);
+			console.log("Error in network request: " + req.statusText);
 		}
 	});
 	req.send(JSON.stringify(payload));
@@ -163,7 +163,7 @@ function actInputButton(event){
 			var response = JSON.parse(req.responseText)
 			drawTable(response);
 		}else{
-			console.log("Error in network request: " + request.statusText);
+			console.log("Error in network request: " + req.statusText);
 		}
 	});
 	req.send(JSON.stringify(payload));
