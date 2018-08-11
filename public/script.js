@@ -139,11 +139,11 @@ function actEditButton(event){
 function actInputButton(event){
 	var req = new XMLHttpRequest();
 	var payload = {name: null, reps: null, weight: null, date: null, unit: null};
-	payload.name = document.getElementById("exeName").value;
-	payload.reps = document.getElementById("exeReps").value;
-	payload.weight = document.getElementById("exeWeight").value;
-	payload.date = document.getElementById("exeDate").value;
-	payload.unit = document.getElementById("exeUnit").value;
+	payload.name = document.getElementById("exeName").value || null;
+	payload.reps = document.getElementById("exeReps").value || null;
+	payload.weight = document.getElementById("exeWeight").value || null;
+	payload.date = document.getElementById("exeDate").value || null;
+	payload.unit = document.getElementById("exeUnit").value || null;
 	
 	document.getElementById("exeName").value = null;
 	document.getElementById("exeReps").value = null;
