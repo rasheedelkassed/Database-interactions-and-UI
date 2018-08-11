@@ -18,6 +18,7 @@ function drawTable(rows){
 			cellData.textContent = r;
 		}
 	}
+	document.body.appendChild(table);
 }
 
 // Call the functions to add event listeners to all buttons on the page
