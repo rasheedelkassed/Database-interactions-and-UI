@@ -151,7 +151,7 @@ function actInputButton(event){
 	document.getElementById("exeDate").value = null;
 	document.getElementById("exeUnit").value = null;
 	
-	if(payload.name == null){
+	if(payload.name == null || payload.name == ""){
 		alert("Inputting requires a name");
 		event.preventDefault();
 		return;
