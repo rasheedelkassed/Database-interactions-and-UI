@@ -2,7 +2,9 @@
 // Call functions that need to act on page load
 if(document.readyState === "loading"){
 	document.addEventListener("DOMContentLoaded", addSubButtonListeners);
+	document.addEventListener("DOMContentLoaded", loadTable);
 }else{
+	loadTable();
 	addSubButtonListeners();
 }
 
