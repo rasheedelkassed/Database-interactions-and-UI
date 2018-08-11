@@ -10,6 +10,15 @@ if(document.readyState === "loading"){
 function drawTable(rows){
 	var header = ["Name", "Reps", "Weight", "Date", "Unit"];
 	var table = document.createElement("table");
+	// create the header
+	var headerData = document.createElement("tr")
+	for(var i = 0; i < header.length; i++){
+		headerData = document.createElement(th);
+		headerData.textContent = header[i];
+		
+	}
+		
+	// create the other rows
 	for(var i = 0; i < rows.length; i++){
 		var rowData = document.createElement("tr")
 		for(r in rows[i]){
@@ -17,6 +26,7 @@ function drawTable(rows){
 			cellData = document.createElement("td");
 			cellData.textContent = r.value;
 		}
+		table.appendChild(rowData);
 	}
 	document.body.appendChild(table);
 }
