@@ -33,14 +33,14 @@ function drawTable(rows){
 	// create the other rows
 	// this loop is inefficient
 	for(var i = 0; i < rows.length; i++){
-		var formToAdd = document.createElement("form");
+		var formToAdd = document.createElement("FORM");
 		var deleteButton = document.createElement("input");
 		deleteButton.type = "submit";
-		deleteButton.class = "delete";
+		deleteButton.className = "delete";
 		deleteButton.value = "Delete";
 		var editButton = document.createElement("input");
 		editButton.type = "submit";
-		editButton.class = "edit";
+		editButton.className = "edit";
 		editButton.value = "Edit";
 		var hiddenInput = document.createElement("input");
 		hiddenInput.type = "hidden";
