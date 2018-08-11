@@ -53,7 +53,7 @@ function drawTable(rows){
 				cellData.textContent = rows[i][r + ""];
 				rowData.appendChild(cellData);
 			}else{
-				hiddenInput.value = row[i][r + ""];
+				hiddenInput.value = rows[i][r + ""];
 			}
 		}
 		formToAdd.appendChild(hiddenInput);
