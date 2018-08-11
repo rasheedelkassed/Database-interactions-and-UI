@@ -1,16 +1,24 @@
 
-// Call functions on page load
+// Call functions that need to act on page load
 if(document.readyState === "loading"){
 	document.addEventListener("DOMContentLoaded", addSubButtonListeners);
 }else{
-	
+	addSubButtonListeners();
+}
+
+function deleteTable(){
+	var table = document.getElementById("mainTable");
+	if(table){
+		table.parentNode.removeChild(table);
+	}
 }
 
 // Draw the table
 function drawTable(rows){
-	console.log(rows);
+	deleteTable();
 	var header = ["Name", "Reps", "Weight", "Date", "Unit"];
 	var table = document.createElement("table");
+	table.id = "mainTable";
 	// create the header
 	var headerData = document.createElement("tr")
 	for(var i = 0; i < header.length; i++){
@@ -33,6 +41,22 @@ function drawTable(rows){
 		table.appendChild(rowData);
 	}
 	document.body.appendChild(table);
+}
+
+// Load table on first page load
+function loadTable(){
+	var req = new XMLHttpRequest();
+	req.open("GET", "/start-up");
+	req.setRequestHeader("Content-Type", "application/json");
+	req.addEventListener("load", function(){
+		if(req.status >= 200 && req.status < 400){
+			var response = JSON.parse(req.responseText)
+			drawTable(response);
+		}else{
+			console.log("Error in network request: " + request.statusText);
+		}
+	});
+	req.send();
 }
 
 // Call the functions to add event listeners to all buttons on the page
@@ -61,7 +85,6 @@ function actDeleteButton(event){
 		if(req.status >= 200 && req.status < 400){
 			var response = JSON.parse(req.responseText)
 			drawTable(response);
-			console.log(response);
 		}else{
 			console.log("Error in network request: " + request.statusText);
 		}

@@ -27,7 +27,11 @@ function returnTable(req, res, next){
 }
 
 app.get("/", function(req, res, next){
-	var getParams = [];
+	var context = {};
+	res.render("sql", context)
+});
+
+app.get("/start-up", function(req, res, next){
 	var context = {};
 	mysql.pool.query("SELECT * FROM workout", function(err, rows, fields){
 		if(err){
@@ -35,12 +39,8 @@ app.get("/", function(req, res, next){
 			next(err);
 			return;
 		}
-		for(var i = 0; i < rows.length; i++){
-			getParams.push(rows[i]);
-		}
-		context.dataList = getParams;
-		res.render("sql", context)
 	});
+	returnTable(req, res, next);
 });
 
 app.get("/reset-table",function(req, res, next){
