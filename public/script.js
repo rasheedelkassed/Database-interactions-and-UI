@@ -164,27 +164,27 @@ function addEditForm(rowValue){
 	var nameInput = document.createElement("input");
 	nameInput.id = "newName";
 	nameInput.type = "text";
-	nameInput.value = rowValue["name"];
+	nameInput.value = rowValue[0]["name"];
 	
 	var repsInput = document.createElement("input");
 	repsInput.id = "newReps";
 	repsInput.type = "number";
-	repsInput.value = rowValue["reps"];
+	repsInput.value = rowValue[0]["reps"];
 	
 	var weightInput = document.createElement("input");
 	weightInput.id = "newWeight";
 	weightInput.type = "number";
-	weightInput.value = rowValue["weight"];
+	weightInput.value = rowValue[0]["weight"];
 	
 	var dateInput = document.createElement("input");
 	dateInput.id = "newDate";
 	dateInput.type = "text";
-	dateInput.value = rowValue["date"];
+	dateInput.value = rowValue[0]["date"];
 	
 	var unitInput = document.createElement("input");
 	unitInput.id = "newUnit";
 	unitInput.type = "text";
-	unitInput.value = rowValue["unit"];
+	unitInput.value = rowValue[0]["unit"];
 	
 	var submitButton = document.createElement("input");
 	submitButton.className = "sendEdit";
@@ -192,10 +192,15 @@ function addEditForm(rowValue){
 	
 	formToAdd.appendChild(legend);
 	formToAdd.appendChild(nameInput);
+	formToAdd.appendChild(document.createElement("br"));
 	formToAdd.appendChild(repsInput);
+	formToAdd.appendChild(document.createElement("br"));
 	formToAdd.appendChild(weightInput);
+	formToAdd.appendChild(document.createElement("br"));
 	formToAdd.appendChild(dateInput);
+	formToAdd.appendChild(document.createElement("br"));
 	formToAdd.appendChild(unitInput);
+	formToAdd.appendChild(document.createElement("br"));
 	formToAdd.appendChild(submitButton);
 	
 	document.body.appendChild(formToAdd);
