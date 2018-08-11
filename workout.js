@@ -86,9 +86,9 @@ app.post("/get-data", function(req, res, next) {
 			next(err);
 			return;
 		}
+		res.type("application/json")
+		res.send(rows);
 	});
-	res.type("application/json")
-	res.send(rows);
 });
 
 
