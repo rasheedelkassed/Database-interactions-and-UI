@@ -190,6 +190,11 @@ function addEditForm(rowValue){
 	unitInput.type = "text";
 	unitInput.value = rowValue[0]["unit"];
 	
+	var idInput = document.createElement("input");
+	idInput.id = "newId";
+	idInput.type = "hidden";
+	idInput.value = rowValue[0]["id"];
+	
 	var submitButton = document.createElement("input");
 	submitButton.className = "sendEdit";
 	submitButton.type = "submit";
@@ -205,6 +210,7 @@ function addEditForm(rowValue){
 	formToAdd.appendChild(document.createElement("br"));
 	formToAdd.appendChild(unitInput);
 	formToAdd.appendChild(document.createElement("br"));
+	formToAdd.appendChild(idInput);
 	formToAdd.appendChild(submitButton);
 	
 	document.body.appendChild(formToAdd);
@@ -220,7 +226,8 @@ function removeEditForm(){
 
 function actSendEditButton(event){
 	var req = new XMLHttpRequest();
-	var payload = {name: null, reps: null, weight: null, date: null, unit: null};
+	var payload = {id: null, name: null, reps: null, weight: null, date: null, unit: null};
+	payload.id = document.getElementById("newId").value || null;
 	payload.name = document.getElementById("newName").value || null;
 	payload.reps = document.getElementById("newReps").value || null;
 	payload.weight = document.getElementById("newWeight").value || null;
