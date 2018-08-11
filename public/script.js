@@ -8,6 +8,7 @@ if(document.readyState === "loading"){
 
 // Draw the table
 function drawTable(rows){
+	console.log(rows);
 	var header = ["Name", "Reps", "Weight", "Date", "Unit"];
 	var table = document.createElement("table");
 	// create the header
@@ -24,7 +25,7 @@ function drawTable(rows){
 		var rowData = document.createElement("tr")
 		for(r in rows[i+1]){
 			var cellData = document.createElement("td");
-			cellData.textContent = rows[i+1].r;
+			cellData.textContent = rows[i+1][""+r];
 			rowData.appendChild(cellData);
 		}
 		table.appendChild(rowData);
