@@ -164,27 +164,27 @@ function addEditForm(rowValue){
 	var nameInput = document.createElement("input");
 	nameInput.id = "newName";
 	nameInput.type = "text";
-	nameInput.value = rowValue[name];
+	nameInput.value = rowValue["name"];
 	
 	var repsInput = document.createElement("input");
 	repsInput.id = "newReps";
 	repsInput.type = "number";
-	repsInput.value = rowValue[reps];
+	repsInput.value = rowValue["reps"];
 	
 	var weightInput = document.createElement("input");
 	weightInput.id = "newWeight";
 	weightInput.type = "number";
-	weightInput.value = rowValue[weight];
+	weightInput.value = rowValue["weight"];
 	
 	var dateInput = document.createElement("input");
 	dateInput.id = "newDate";
 	dateInput.type = "text";
-	dateInput.value = rowValue[date];
+	dateInput.value = rowValue["date"];
 	
 	var unitInput = document.createElement("input");
 	unitInput.id = "newUnit";
 	unitInput.type = "text";
-	unitInput.value = rowValue[unit];
+	unitInput.value = rowValue["unit"];
 	
 	var submitButton = document.createElement("input");
 	submitButton.className = "sendEdit";
