@@ -47,7 +47,6 @@ function drawTable(rows){
 		hiddenInput.value = "";
 		
 		var rowData = document.createElement("tr")
-		formCell.appendChild(formToAdd);
 		for(r in rows[i]){
 			if(r + "" != "id"){
 				var cellData = document.createElement("td");
