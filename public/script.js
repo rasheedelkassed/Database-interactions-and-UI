@@ -15,16 +15,16 @@ function drawTable(rows){
 	for(var i = 0; i < header.length; i++){
 		headerData = document.createElement("th");
 		headerData.textContent = header[i];
-		
 	}
+	table.appendChild(headerData);
 		
 	// create the other rows
 	for(var i = 0; i < rows.length; i++){
 		var rowData = document.createElement("tr")
 		for(r in rows[i]){
-			var cellData = 0;
-			cellData = document.createElement("td");
+			var cellData = document.createElement("td");
 			cellData.textContent = r.value;
+			rowData.appendChild(cellData);
 		}
 		table.appendChild(rowData);
 	}
