@@ -44,7 +44,8 @@ function actDeleteButton(event){
 	req.setRequestHeader("Content-Type", "application/json");
 	req.addEventListener("load", function(){
 		if(req.status >= 200 && req.status < 400){
-			drawTable(JSON.parse(req.responseText));
+			var response = JSON.parse(req.responseText)
+			drawTable(response);
 			console.log(response);
 		}else{
 			console.log("Error in network request: " + request.statusText);
