@@ -24,9 +24,9 @@ function drawTable(rows){
 	for(var i = 0; i < rows.length; i++){
 		var rowData = document.createElement("tr")
 		for(r in rows[i]){
-			if(r != "id"){
+			if(r + "" != "id"){
 				var cellData = document.createElement("td");
-				cellData.textContent = rows[i+1][r];
+				cellData.textContent = rows[i+1][r + ""];  //Don't know why quotes are needed, but doesn't work without
 				rowData.appendChild(cellData);
 			}
 		}
