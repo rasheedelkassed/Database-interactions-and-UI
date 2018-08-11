@@ -151,7 +151,7 @@ function actEditButton(event){
 			console.log("Error in network request: " + req.statusText);
 		}
 	});
-	
+	req.send(JSON.stringify(payload));
 	event.preventDefault();
 }
 
