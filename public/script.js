@@ -31,15 +31,38 @@ function drawTable(rows){
 	table.appendChild(headerData);
 		
 	// create the other rows
+	// this loop is inefficient
 	for(var i = 0; i < rows.length; i++){
+		var formToAdd = document.createElement("form");
+		var deleteButton = document.createElement("input");
+		deleteButton.type = "submit";
+		deleteButton.class = "delete";
+		deleteButton.value = "Delete";
+		var editButton = document.createElement("input");
+		editButton.type = "submit";
+		editButton.class = "edit";
+		editButton.value = "Edit";
+		var hiddenInput = document.createElement("input");
+		hiddenInput.type = "hidden";
+		hiddenInput.value = "";
+		
 		var rowData = document.createElement("tr")
+		formCell.appendChild(formToAdd);
 		for(r in rows[i]){
 			if(r + "" != "id"){
 				var cellData = document.createElement("td");
-				cellData.textContent = rows[i][r + ""];  //Don't know why quotes are needed, but doesn't work without
+				cellData.textContent = rows[i][r + ""];
 				rowData.appendChild(cellData);
+			}else{
+				hiddenInput.value = row[i][r + ""];
 			}
 		}
+		formToAdd.appendChild(hiddenInput);
+		formToAdd.appendChild(deleteButton);
+		formToAdd.appendChild(editButton);
+		var formCell = document.createElement("td");
+		formCell.appendChild(formToAdd);
+		rowData.appendChild(formCell);
 		table.appendChild(rowData);
 	}
 	document.body.appendChild(table);
