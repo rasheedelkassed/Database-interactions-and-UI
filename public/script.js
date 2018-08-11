@@ -139,7 +139,7 @@ function actDeleteButton(event){
 // Edit the row of the table in MySQL and reload the table
 function actEditButton(event){
 	var req = new XMLHttpRequest();
-	var id = this.previousElementSibling.value;
+	var id = this.previousElementSibling.previousElementSibling.value;
 	var payload = {"id":"" + id};
 	req.open("POST", "/get-data", true);
 	req.setRequestHeader("Content-Type", "application/json");
