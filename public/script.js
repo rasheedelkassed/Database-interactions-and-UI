@@ -13,8 +13,9 @@ function drawTable(rows){
 	// create the header
 	var headerData = document.createElement("tr")
 	for(var i = 0; i < header.length; i++){
-		headerData = document.createElement("th");
-		headerData.textContent = header[i];
+		var cellData = document.createElement("th");
+		cellData.textContent = header[i];
+		rowData.appendChild(headerData);
 	}
 	table.appendChild(headerData);
 		
