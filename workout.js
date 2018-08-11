@@ -71,7 +71,7 @@ app.post("/delete-row", function(req, res, next) {
 });
 
 app.post("/input-row", function(req, res, next) {
-	mysql.pool.query("INSERT INTO `workout` (`name`, `date`, `reps`, `weight`, `unit`) VALUES (?,?,?,?,?)", [req.body.name, req.body.date, req.body.reps, req.body.weight, req.body.unit], function(err, result){
+	mysql.pool.query("INSERT INTO `workout` (`name`, `reps`, `weight`, `date`, `unit`) VALUES (?,?,?,?,?)", [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.unit], function(err, result){
 		if(err){
 			next(err);
 			return;
